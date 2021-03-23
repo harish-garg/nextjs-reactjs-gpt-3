@@ -1,65 +1,76 @@
-import Head from 'next/head'
-import styles from '../styles/Home.module.css'
+import Head from "next/head";
+import styles from "../styles/Home.module.css";
+import { useState, useEffect } from 'react';
 
 export default function Home() {
+  const [data, setData] = useState( { text:'' });
+  const [query, setQuery] = useState();
+  const [search, setSearch] = useState();
+  const [isLoading, setIsLoading] = useState(false);
+ 
+  useEffect(() => {
+    const fetchData = async () => {
+      if (search) {
+      setIsLoading(true);
+      const res = await fetch(`/api/openai`, {
+        body: JSON.stringify({
+          name: search
+        }),
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        method: 'POST'
+      })
+      const data = await res.json();
+      setData(data);
+      setIsLoading(false);
+    }};
+ 
+    fetchData();
+  }, [search]);
   return (
     <div className={styles.container}>
       <Head>
-        <title>Create Next App</title>
+        <title>GPT-3 App</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
       <main className={styles.main}>
         <h1 className={styles.title}>
-          Welcome to <a href="https://nextjs.org">Next.js!</a>
+          <a>AI Lyrics Generator</a>
         </h1>
 
-        <p className={styles.description}>
-          Get started by editing{' '}
-          <code className={styles.code}>pages/index.js</code>
-        </p>
+        <p className={styles.description}>Built with NextJS & GPT-3 API</p>
 
         <div className={styles.grid}>
-          <a href="https://nextjs.org/docs" className={styles.card}>
-            <h3>Documentation &rarr;</h3>
-            <p>Find in-depth information about Next.js features and API.</p>
-          </a>
-
-          <a href="https://nextjs.org/learn" className={styles.card}>
-            <h3>Learn &rarr;</h3>
-            <p>Learn about Next.js in an interactive course with quizzes!</p>
-          </a>
-
-          <a
-            href="https://github.com/vercel/next.js/tree/master/examples"
-            className={styles.card}
-          >
-            <h3>Examples &rarr;</h3>
-            <p>Discover and deploy boilerplate example Next.js projects.</p>
-          </a>
-
-          <a
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className={styles.card}
-          >
-            <h3>Deploy &rarr;</h3>
-            <p>
-              Instantly deploy your Next.js site to a public URL with Vercel.
-            </p>
-          </a>
+          <div className={styles.card}>
+            <h3>Enter Artist:</h3>
+            <input
+          type="text"
+          value={query}
+          onChange={event => setQuery(event.target.value)}
+        />
+        <button
+          type="button"
+          onClick={() =>
+            setSearch(query)
+          }
+        >
+          Generate
+        </button>
+        
+          <h4>Lyrics</h4>  
+          {isLoading ? (
+            <div>Loading ...</div>
+         ) : (
+           <span>
+           {data.text}
+           </span>
+           )}
+        
+          </div>
         </div>
       </main>
-
-      <footer className={styles.footer}>
-        <a
-          href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Powered by{' '}
-          <img src="/vercel.svg" alt="Vercel Logo" className={styles.logo} />
-        </a>
-      </footer>
     </div>
-  )
+  );
 }

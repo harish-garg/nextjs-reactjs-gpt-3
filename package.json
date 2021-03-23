@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "next": "10.0.9",
+    "openai-api": "^1.0.17",
     "react": "17.0.1",
     "react-dom": "17.0.1"
   }

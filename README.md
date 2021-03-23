@@ -6,8 +6,8 @@
 3. Install node modules
 4. start the dev server with "yarn dev" command
 
-For a Detailed How to Guide, on how to create this yourself, checkout this [link]()
+For a Detailed How to Guide, on how to create this yourself, checkout this [blog post(https://harishgarg.com/writing/how-to-build-a-serverless-gpt-3-powered-using-nextjs-react/).
 
-Created by [Harish Garg](https://harishgarg.com).
+Created by [Harish Garg](https://harishgarg.com/gpt-3).
 
 [Buy Me Coffee](https://www.buymeacoffee.com/harishgarg)

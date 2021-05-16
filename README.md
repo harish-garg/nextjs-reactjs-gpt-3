@@ -12,6 +12,6 @@
 
 For a Detailed How to Guide, on how to create this yourself, checkout this [blog post](https://harishgarg.com/writing/how-to-build-a-serverless-gpt-3-powered-using-nextjs-react/).
 
-- [Harish Garg](https://harishgarg.com/gpt-3).
+* [Follow me on Twitter](https://twitter.com/harishkgarg).
 
-[Buy Me Coffee](https://www.buymeacoffee.com/harishgarg)
+* [Buy Me Coffee](https://www.buymeacoffee.com/harishgarg)
